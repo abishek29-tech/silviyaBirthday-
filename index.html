@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Silviya 🎂</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ✨ Floating petals -->
+  <div id="petals-container"></div>
+
+  <!-- 🔒 LOCK SCREEN -->
+  <section id="lock-screen" class="screen active">
+    <div class="lock-content">
+      <div class="cake-emoji">🎂</div>
+      <h1 class="brand-title">A Special Day</h1>
+      <p class="subtitle">Someone made this just for you</p>
+      <button class="btn-primary" onclick="showFreeVersion()">Open Your Wish 💌</button>
+      <div class="premium-hint" onclick="showPremiumUnlock()">
+        <span>✨ Unlock Premium Experience</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🎉 FREE VERSION -->
+  <section id="free-screen" class="screen">
+    <div class="free-content">
+      <p class="eyebrow">With love, always</p>
+      <h2 class="wish-heading">Happy Birthday,<br/><em id="recipient-name">Silviya</em></h2>
+      <p class="free-message">
+        Today is your day. Every laugh, every memory, every moment —
+        it all leads to celebrating you. Wishing you endless joy. 🎈
+      </p>
+      <div class="balloons">
+        <span>🎈</span><span>🎉</span><span>🎁</span><span>🎈</span>
+      </div>
+      <button class="btn-secondary" onclick="showPremiumUnlock()">
+        ✨ See the Full Surprise
+      </button>
+    </div>
+  </section>
+
+  <!-- 🔑 PREMIUM UNLOCK SCREEN -->
+  <section id="unlock-screen" class="screen">
+    <div class="unlock-content">
+      <h2>🔐 Enter Your Secret Code</h2>
+      <p>The person who made this gave you a special key</p>
+      <input type="password" id="code-input" placeholder="Enter code..." class="code-input"/>
+      <button class="btn-primary" onclick="checkCode()">Unlock ✨</button>
+      <p id="error-msg" class="error-msg"></p>
+      <button class="btn-ghost" onclick="showFreeVersion()">← Go Back</button>
+    </div>
+  </section>
+
+  <!-- 👑 PREMIUM VERSION -->
+  <section id="premium-screen" class="screen">
+
+    <!-- Hero -->
+    <div class="premium-hero">
+      <div class="confetti-burst" id="confetti"></div>
+      <p class="premium-eyebrow">A premium wish, crafted with love</p>
+      <h1 class="premium-title">Happy Birthday,<br/><em id="premium-name">Silviya</em> 💖</h1>
+      <p class="premium-date" id="birthday-date"></p>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="section-block">
+      <h3 class="section-label">⏳ Your Special Day Countdown</h3>
+      <div class="timer-grid" id="timer-grid">
+        <div class="timer-box"><span id="t-days">00</span><label>Days</label></div>
+        <div class="timer-box"><span id="t-hours">00</span><label>Hours</label></div>
+        <div class="timer-box"><span id="t-mins">00</span><label>Minutes</label></div>
+        <div class="timer-box"><span id="t-secs">00</span><label>Seconds</label></div>
+      </div>
+    </div>
+
+    <!-- Love Letter -->
+    <div class="section-block letter-block">
+      <h3 class="section-label">💌 A Letter For You</h3>
+      <div class="letter-card">
+        <p id="love-letter">
+          From the moment I've known you, everything got a little brighter.
+          You are more than my best friend — you are the person I think about
+          when I smile for no reason. Today, the universe celebrates you,
+          and so do I, with every piece of my heart.
+          <br/><br/>
+          May this year bring you everything you deserve — adventure,
+          laughter, warmth, and all the love that you so freely give to others.
+          You are irreplaceable. You are extraordinary. You are deeply loved.
+          <br/><br/>
+          — Always yours 🌸
+        </p>
+      </div>
+    </div>
+
+    <!-- Memory Gallery -->
+    <div class="section-block">
+      <h3 class="section-label">📸 Our Memories</h3>
+      <div class="gallery-grid">
+        <div class="gallery-card" onclick="openMemory(0)">
+          <img src="photo1.jpg" class="gallery-img" alt="Memory 1"/>
+          <p>First time we met</p>
+        </div>
+        <div class="gallery-card" onclick="openMemory(1)">
+          <img src="photo2.jpg" class="gallery-img" alt="Memory 2"/>
+          <p>That night we laughed</p>
+        </div>
+        <div class="gallery-card" onclick="openMemory(2)">
+          <img src="photo3.jpg" class="gallery-img" alt="Memory 3"/>
+          <p>When I knew you were special</p>
+        </div>
+        <div class="gallery-card" onclick="openMemory(3)">
+          <img src="photo4.jpg" class="gallery-img" alt="Memory 4"/>
+          <p>Every moment with you</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="section-block">
+      <h3 class="section-label">🎵 Your Song</h3>
+      <div class="music-player">
+        <div class="music-info">
+          <div class="vinyl" id="vinyl">🎵</div>
+          <div>
+            <p class="song-title">Favourite Song 🎵</p>
+            <p class="song-artist">For Silviya, with love</p>
+          </div>
+        </div>
+        <button class="play-btn" onclick="toggleMusic()" id="play-btn">▶ Play</button>
+        <audio id="birthday-audio" loop>
+          <source src="favouritesong.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+
+    <!-- Wishes Wall -->
+    <div class="section-block">
+      <h3 class="section-label">🌟 Birthday Wishes</h3>
+      <div class="wishes-list" id="wishes-list">
+        <div class="wish-bubble">🎂 May all your dreams come true this year!</div>
+        <div class="wish-bubble">💖 You deserve every happiness in the world.</div>
+        <div class="wish-bubble">🌟 Another year wiser, more beautiful, more you.</div>
+        <div class="wish-bubble">🥂 Here's to the most wonderful person I know!</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="premium-footer">
+      <p>Made with 💖 especially for Silviya</p>
+      <p class="footer-small">This moment, this page, this love — all yours.</p>
+    </footer>
+
+  </section>
+
+  <!-- Memory Modal -->
+  <div id="memory-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeMemory()">✕</button>
+      <div class="modal-emoji" id="modal-emoji"></div>
+      <h3 id="modal-title"></h3>
+      <p id="modal-text"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
